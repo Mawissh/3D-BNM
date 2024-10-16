@@ -1,4 +1,4 @@
-%% Encryption and Decryption coding:::
+%% Encryption coding:::
 
 imgOrg= double(imread('D:\vivek new article on quantum\3-D chaotic map\Images\Barbara.tif'));
 
