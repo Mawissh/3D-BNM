@@ -1,0 +1,26 @@
+%% Reverse controlled qubit level scrambling::::
+
+function[output_image] = reverse_qubit_level_scrambling(P, image)
+% Load your image (Assuming it's grayscale)
+%image = imresize(image, [512 512]); % Resize if not already 512x512
+output_image = image;
+% Normalize P to be between 1 and 2
+P = mod(P*100, 5);
+P = round(P);
+% Apply scrambling based on P values
+for i = 1:numel(image)
+    pixel = image(i);
+    times_to_apply = P(i);
+    
+    if mod(times_to_apply, 2) == 0 % Even numbers including zero
+        for j = 1:times_to_apply
+            pixel = reverse_qubit_shift_operation(pixel);
+        end
+    else % Odd numbers
+        for j = 1:times_to_apply
+            pixel = reverseXORshift(pixel);
+        end
+    end
+    
+    output_image(i) = pixel;
+end

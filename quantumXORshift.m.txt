@@ -1,0 +1,63 @@
+% function pixel = quantumXORshift(pixel)
+%     % Convert the pixel to its binary representation
+%     binary_str = dec2bin(pixel, 8);
+% 
+%     % Define the CNOT operation
+%     % Assume the control qubit is the 7th bit and the target qubit is the 3rd bit
+%     if binary_str(8) == '1'
+%         binary_str(1) = xor(binary_str(1) == '1', 1) + '0'; % Flip the 3rd bit if the 7th bit is 1
+%     end
+%     if binary_str(7) == '1'
+%         binary_str(2) = xor(binary_str(2) == '1', 1) + '0'; % Flip the 3rd bit if the 7th bit is 1
+%     end
+%     if binary_str(6) == '1'
+%         binary_str(3) = xor(binary_str(3) == '1', 1) + '0'; % Flip the 3rd bit if the 7th bit is 1
+%     end
+%     % % Define the SWAP operation
+%     % % Assume we swap the 6th bit with the 2nd bit, and so on.
+%     binary_str([8, 3]) = binary_str([3, 8]);
+%     binary_str([7, 5]) = binary_str([5, 7]);
+%     binary_str([6, 2]) = binary_str([2, 6]);
+%     binary_str([4, 1]) = binary_str([1, 4]); 
+%     binary_str([2, 1]) = binary_str([1, 2]);% Assuming you want to swap 4th with the 0th (8th in MATLAB)
+%     binary_str([5, 2]) = binary_str([2, 5]); 
+%     % % Convert the binary string back to a decimal pixel value
+%     pixel = bin2dec(binary_str);
+% end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Modified Quantum XOR shift Scrambling 
+
+function pixel = quantumXORshift(pixel)
+    % Convert the pixel to its binary representation
+    binary_str = dec2bin(pixel, 8);
+
+    % Define the CNOT operation
+    % Assume the control qubit is the 7th bit and the target qubit is the 3rd bit
+    if binary_str(8) == '1'
+        binary_str(1) = xor(binary_str(1) == '1', 1) + '0'; % Flip the 3rd bit if the 7th bit is 1
+    end
+    if binary_str(7) == '1'
+        binary_str(2) = xor(binary_str(2) == '1', 1) + '0'; % Flip the 3rd bit if the 7th bit is 1
+    end
+    if binary_str(6) == '1'
+        binary_str(3) = xor(binary_str(3) == '1', 1) + '0'; % Flip the 3rd bit if the 7th bit is 1
+    end
+     if binary_str(5) == '1'
+         binary_str(4) = xor(binary_str(4) == '1', 1) + '0'; % Flip the 3rd bit if the 7th bit is 1
+     end
+     if binary_str(6) == '1'
+         binary_str(1) = xor(binary_str(1) == '1', 1) + '0'; % Flip the 3rd bit if the 7th bit is 1
+    end
+    % % Define the SWAP operation
+    % % Assume we swap the 6th bit with the 2nd bit, and so on.
+    binary_str([8, 3]) = binary_str([3, 8]);
+    binary_str([7, 5]) = binary_str([5, 7]);
+    binary_str([6, 2]) = binary_str([2, 6]);
+    binary_str([4, 1]) = binary_str([1, 4]); 
+    binary_str([2, 1]) = binary_str([1, 2]);% Assuming you want to swap 4th with the 0th (8th in MATLAB)
+    binary_str([5, 2]) = binary_str([2, 5]); 
+    % % Convert the binary string back to a decimal pixel value
+    pixel = bin2dec(binary_str);
+end
